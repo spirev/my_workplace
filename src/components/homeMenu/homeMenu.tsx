@@ -4,6 +4,10 @@ import IconButton from '@mui/material/IconButton';
 
 export function HomeMenu(props: any) {
 
+    const menuContainerStyle = {
+        zIndex: 10,
+    }
+
     const menuIconeStyle = {
         color: 'white',
         fontSize: '2.5rem',
@@ -11,8 +15,10 @@ export function HomeMenu(props: any) {
     };
 
     return (
-        <IconButton>
-            <MenuIcon style={menuIconeStyle} />
-        </IconButton>
+        <header style={menuContainerStyle}>
+            <IconButton>
+                <MenuIcon style={menuIconeStyle} />
+            </IconButton>
+        </header>
     );
 };

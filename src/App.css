@@ -1,6 +1,8 @@
 .App {
+  display: flex;
+  flex-flow: row wrap;
   text-align: center;
-  background-color: #001d24;
+  background-color: #000b1c;
   height: 100%;
 }
 
