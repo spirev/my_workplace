@@ -1,0 +1,32 @@
+- Create theme ( next step was to add color to menuButton via theme.dark.secondary)
+    theme.dark.main = dark blue
+    theme.dark.secondary = white
+
+- create home menu ( maybe MUI has some sorcery for this... ? ) :
+    - icone animation
+    - aside window
+    - animation aside window, open + close
+    - app icones
+
+- main/favorite app ( app that is display on homepage when logged or default on 'lifestyle' app)
+
+- account part :
+    - create account
+    - login
+    - logout
+    - reset password
+    - delete account
+
+- backend ( this is the big and obscure part )
+    - DB ? ( mysql ?)
+    - hosting ?
+    - help me masta sven...
+
+- app :
+    - todo-list generator :
+    - work chronometer
+    - lifestyle improvment
+    - notions
+    - stockage
+    - can't remember n°6 see book
+
