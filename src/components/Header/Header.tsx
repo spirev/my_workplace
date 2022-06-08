@@ -2,9 +2,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Switch from '@mui/material/Switch';
 import PersonIcon from '@mui/icons-material/Person';
 import IconButton from '@mui/material/IconButton';
-import { CSSProperties } from 'react';
+import { CSSProperties, useEffect, useState } from 'react';
+import { darkTheme, lightTheme, useCustomTheme } from '../../theme';
 
 export function Header() {
+
+    const [theme, setTheme] = useCustomTheme();
 
     const headerStyle: CSSProperties = {
         display: 'flex',
@@ -14,9 +17,14 @@ export function Header() {
     };
     
     const menuIconeStyle: CSSProperties = {
-        color: 'white',
+        color: theme.palette.primary.main,
         fontSize: '2.2rem',
         cursor: 'pointer',
+    };
+
+    function switchTheme(evt: any) {
+        let newTheme = theme === lightTheme ? darkTheme : lightTheme;
+        setTheme(newTheme);
     };
 
     return (
@@ -27,11 +35,13 @@ export function Header() {
             <div>
                 <Switch
                 size='medium'
-                defaultChecked />
+                defaultChecked
+                onChange={(evt) => switchTheme(evt)}
+                />
                 <IconButton>
                     <PersonIcon
                     style={menuIconeStyle}
-                    onClick={() => console.log('click on profil')} />
+                 />
                 </IconButton>
             </div>
         </header>
