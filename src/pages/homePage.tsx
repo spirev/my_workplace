@@ -1,6 +1,5 @@
 import { CSSProperties, useState } from "react";
 import { Header } from "../components/Header/Header";
-// import { useTheme } from "../theme";
 
 
 export function Homepage(props: any) {

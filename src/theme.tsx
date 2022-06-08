@@ -1,47 +1,53 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
+import { useState } from "react";
 
+function Theme() { 
 
-export const darkTheme = createTheme({
-    palette: {
-        primary: {
-            main: 'rgb(255, 0, 0)',
-        },
-    },
-});
+    
+    
+    interface themeConf {
+        themeName: string | null;
+        theme: typeof darkTheme | typeof lightTheme | null;
+    };
+    
+    const darkTheme = {
+        name: 'darkTheme',
+        background: '#1a2630',
+        icon: {
+            color: 'rgb(255, 50, 50)',
+            fontSize: '2.2rem',
+            cursor: 'pointer',
+        }
+    };
+    
+    const lightTheme = {
+        name: 'lightTheme',
+        background: '#7ba6c9',
+        icon: {
+            color: 'rgb(50, 250, 250)',
+            fontSize: '2.2rem',
+            cursor: 'pointer',
+        }
+    };
+    
+    const darkThemeConf: themeConf = {
+        themeName: 'darkTheme',
+        theme: darkTheme,
+    }
+    
+    const lightThemeConf: themeConf = {
+        themeName: 'lightTheme',
+        theme: lightTheme,
+    }
 
-export const lightTheme = createTheme({
-    palette: {
-        primary: {
-            main: 'rgb(0, 255, 255)',
-        },
-    },
-})
-
-type ThemeName = typeof lightTheme | typeof darkTheme;
-
-export function useCustomTheme(): [ThemeName, (newTheme: ThemeName) => void] {
-    const [theme, setTheme] = useState<ThemeName>(darkTheme);
-    return [theme, setTheme];
+    let [themeName, setThemeName] = useState('darkTheme');
+    let [theme, setTheme] = useState(darkThemeConf);
+    
+    function switchTheme() {
+        const newTheme = theme.themeName === 'lightTheme' ? darkThemeConf : lightThemeConf;
+        setTheme(newTheme);
+    }
+    
+    return [themeName, theme]
 }
 
-/**
- * plz try to to do it with provider to allow to pass an object like this :
- * 
- * const context = {
- *  name: string = 'lightTheme',
- *  theme: theme = lightTheme,
- * }
- * 
- * so you can access theme name as a string and theme object to style componenents
- */
-
-// export function ThemeContextProvider({ children }: { children: React.ReactNode }) {
-//     const [theme] = useCustomTheme();
-
-//     return (
-//         <ThemeProvider theme={theme}>
-//             {children}
-//         </ThemeProvider>
-//     )
-// };
+export default Theme;

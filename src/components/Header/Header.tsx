@@ -2,12 +2,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Switch from '@mui/material/Switch';
 import PersonIcon from '@mui/icons-material/Person';
 import IconButton from '@mui/material/IconButton';
-import { CSSProperties, useEffect, useState } from 'react';
-import { darkTheme, lightTheme, useCustomTheme } from '../../theme';
+import { CSSProperties, useContext } from 'react';
+import Theme from '../../theme';
+import './Header.css';
 
 export function Header() {
 
-    const [theme, setTheme] = useCustomTheme();
+    let [themeName, theme] = Theme;
 
     const headerStyle: CSSProperties = {
         display: 'flex',
@@ -17,14 +18,9 @@ export function Header() {
     };
     
     const menuIconeStyle: CSSProperties = {
-        color: theme.palette.primary.main,
+        color: theme?.icon.color,
         fontSize: '2.2rem',
         cursor: 'pointer',
-    };
-
-    function switchTheme(evt: any) {
-        let newTheme = theme === lightTheme ? darkTheme : lightTheme;
-        setTheme(newTheme);
     };
 
     return (
@@ -35,8 +31,8 @@ export function Header() {
             <div>
                 <Switch
                 size='medium'
-                defaultChecked
-                onChange={(evt) => switchTheme(evt)}
+                defaultChecked={false}
+                onChange={switchTheme}
                 />
                 <IconButton>
                     <PersonIcon

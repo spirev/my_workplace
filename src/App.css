@@ -6,6 +6,11 @@
   height: 100%;
 }
 
+.test {
+
+  background-color: #7ba6c9;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100%;
