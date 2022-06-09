@@ -1,53 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function Theme() { 
-
-    
-    
-    interface themeConf {
-        themeName: string | null;
-        theme: typeof darkTheme | typeof lightTheme | null;
-    };
-    
-    const darkTheme = {
-        name: 'darkTheme',
-        background: '#1a2630',
-        icon: {
-            color: 'rgb(255, 50, 50)',
-            fontSize: '2.2rem',
-            cursor: 'pointer',
-        }
-    };
-    
-    const lightTheme = {
-        name: 'lightTheme',
-        background: '#7ba6c9',
-        icon: {
-            color: 'rgb(50, 250, 250)',
-            fontSize: '2.2rem',
-            cursor: 'pointer',
-        }
-    };
-    
-    const darkThemeConf: themeConf = {
-        themeName: 'darkTheme',
-        theme: darkTheme,
+const darkTheme = {
+    name: 'darkTheme',
+    background: '#1a2630',
+    icon: {
+        color: 'white',
+        fontSize: '2.2rem',
+        cursor: 'pointer',
     }
-    
-    const lightThemeConf: themeConf = {
-        themeName: 'lightTheme',
-        theme: lightTheme,
-    }
+};
 
-    let [themeName, setThemeName] = useState('darkTheme');
-    let [theme, setTheme] = useState(darkThemeConf);
-    
+const lightTheme = {
+    name: 'lightTheme',
+    background: '#7ba6c9',
+    icon: {
+        color: 'rgb(0, 56, 99)',
+        fontSize: '2.2rem',
+        cursor: 'pointer',
+    }
+};
+
+export function CustomTheme() {
+    const [themeName, setThemeName] = useState('darkTheme');
+    const [theme, setTheme] = useState(darkTheme);
+
     function switchTheme() {
-        const newTheme = theme.themeName === 'lightTheme' ? darkThemeConf : lightThemeConf;
+        const newThemeName: string = themeName === 'lightTheme' ? 'darkTheme' : 'lightTheme';
+        const newTheme = theme === lightTheme ? darkTheme : lightTheme;
+        setThemeName(newThemeName);
         setTheme(newTheme);
-    }
-    
-    return [themeName, theme]
-}
+    };
 
-export default Theme;
+    const customTheme = {
+        themeName: themeName,
+        theme: theme,
+        switchTheme: switchTheme,
+    }
+
+    useEffect(() => {
+        customTheme.themeName = themeName;
+        customTheme.theme = theme;
+    }, [themeName, theme, customTheme]);
+
+
+    return customTheme;
+};
