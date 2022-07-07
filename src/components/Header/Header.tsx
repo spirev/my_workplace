@@ -2,14 +2,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Switch from '@mui/material/Switch';
 import PersonIcon from '@mui/icons-material/Person';
 import IconButton from '@mui/material/IconButton';
-import { CSSProperties, useContext, useEffect } from 'react';
-import { CustomTheme } from '../../theme';
+import { CSSProperties, useContext } from 'react';
+import { CustomThemeContext, useTheme } from '../../themes/CustomThemeProvider';
 import './Header.css';
 
 export function Header() {
-
-    const customThemeFunction = CustomTheme();
-    const theme = customThemeFunction.theme;
+    const { theme } = useTheme();
+    const { toggleTheme } = useContext<any>(CustomThemeContext);
 
     const headerStyle: CSSProperties = {
         display: 'flex',
@@ -19,14 +18,14 @@ export function Header() {
     };
 
     const menuIconeStyle: CSSProperties = {
-        color: theme.icon.color,
+        color: theme.palette.text.primary,
         fontSize: '2.2rem',
         cursor: 'pointer',
     };
 
-    useEffect(() => {
-        console.log('header themeName -> ' + customThemeFunction.themeName);
-      }, [customThemeFunction])
+    function themeSwitchHandler() {
+        toggleTheme();
+    };
 
     return (
         <header style={headerStyle}>
@@ -37,7 +36,7 @@ export function Header() {
                 <Switch
                     size='medium'
                     defaultChecked={false}
-                    onChange={customThemeFunction.switchTheme}
+                    onChange={themeSwitchHandler}
                 />
                 <IconButton>
                     <PersonIcon

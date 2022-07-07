@@ -1,22 +1,15 @@
-import { useEffect } from 'react';
 import './App.css';
-import { Homepage } from './pages/homePage';
-import { CustomTheme } from './theme';
+import Header from './components/Header/Header';
+import { useTheme } from './themes/CustomThemeProvider';
 
 function App() {
-
-  const customThemeFunction = CustomTheme();
-  const theme = customThemeFunction.theme;
-
-  useEffect(() => {
-    console.log('app themeName -> ' + customThemeFunction.themeName);
-  }, [customThemeFunction])
+  const { theme } = useTheme();
 
   return (
-    <div className="App" style={{ backgroundColor: theme.background }}>
-      <Homepage>
-
-      </Homepage>
+    <div className="App">
+      <main style={{ backgroundColor: theme.backgroundColor }}>
+        <Header />
+      </main>
     </div>
   );
 }
