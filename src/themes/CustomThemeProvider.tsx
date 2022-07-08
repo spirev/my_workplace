@@ -30,7 +30,7 @@ function CustomThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    setTheme('lightTheme');
+    setTheme('darkTheme');
   }, []);
 
   return (

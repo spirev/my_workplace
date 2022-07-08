@@ -1,5 +1,17 @@
-.iconButton {
-    color: rgb(210, 85, 12);
-    font-size: 2.2rem;
-    cursor: pointer;
-};
+header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 14px 20px 0px 20px;
+}
+
+.MuiSwitch-track {
+    background-color: red;
+}
+
+#rightIconsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 140px;
+}
